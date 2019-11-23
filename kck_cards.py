@@ -17,7 +17,7 @@ def resizeImage(image, size, proportional):
 
 def drawContours(image, contours):
     for i in range(0, len(contours)):
-        color = (255, 255, 255)
+        color = (0, 0, 0)
         cv.drawContours(image, contours, i, color, -1)
         #cv.fillPoly(image, pts=[contours], color=(255, 255, 255))
         M = cv.moments(contours[i])

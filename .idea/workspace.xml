@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4067142c-2997-4ffd-8cc6-86cc3216e4b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_planes.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_cards.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/all_cards.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card00_zmienione.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card01_zmienione.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/card02_zmienione.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/card04_zmienione.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/card05_zmienione.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/kck_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/kck_cards.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kck_cards.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+            <state relative-caret-position="136">
+              <caret line="60" column="41" lean-forward="true" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -33,6 +30,11 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/card00_zmienione.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/card01_zmienione.jpg">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
@@ -246,12 +248,12 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.305949" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.305949" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -314,13 +316,16 @@
     <entry file="file://$PROJECT_DIR$/data/card01.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/card01_zmienione.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/card00_zmienione.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/kck_cards.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+        <state relative-caret-position="136">
+          <caret line="60" column="41" lean-forward="true" selection-start-line="60" selection-start-column="41" selection-end-line="60" selection-end-column="41" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
