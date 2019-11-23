@@ -6,7 +6,7 @@ from pathlib import Path
 import os.path
 from PIL import Image
 import PIL
-
+import imutils
 
 def resizeImage(image, size, proportional):
     if proportional:
@@ -69,9 +69,62 @@ def processImage(image,mask):
 
     image = cv.bitwise_or(image, mask)
     image = resizeImage(image, (800,  600), True)
-    cv.imshow('nazwa', image)
-    cv.waitKey(0)
+    #cv.imshow('nazwa', image)
+    #cv.waitKey(0)
     return image
+
+def find4Coordinate(conture):
+    gray = alterColors(conture)
+    edged = cv.Canny(gray, 75, 200)
+    cnts = cv.findContours(edged.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+    #cnts = cnts[0] if imutils.is_cv2() else cnts[1]
+    cnts = cnts[0] if len(cnts) == 2 else cnts[1]
+    cnts = sorted(cnts, key=cv.contourArea, reverse=True)[:5]
+
+    for c in cnts:
+        peri = cv.arcLength(c, True)
+        approx = cv.approxPolyDP(c, 0.02 * peri, True)
+        if len(approx) == 4:
+            screenCnt = approx
+            break
+    end=[]
+    for i in screenCnt:
+        end.append(i[0])
+    #cv.drawContours(conture, [screenCnt], -1, (0, 255, 0), 2)
+    #cv.imshow("conture", conture)
+    #cv.waitKey()
+    #cv.destroyAllWindows()
+
+    return end
+
+
+def order_points(pts):
+    rect = np.zeros((4, 2), dtype="float32")
+    s = np.sum(pts,axis=1)
+    rect[0] = pts[np.argmin(s)]
+    rect[2] = pts[np.argmax(s)]
+    diff = np.diff(pts, axis=1)
+    rect[1] = pts[np.argmin(diff)]
+    rect[3] = pts[np.argmax(diff)]
+    return rect
+
+def four_point_transform(image, pts):
+    rect = order_points(pts)
+    (tl, tr, br, bl) = rect
+    widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
+    widthB = np.sqrt(((tr[0] - tl[0]) ** 2) + ((tr[1] - tl[1]) ** 2))
+    maxWidth = max(int(widthA), int(widthB))
+    heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
+    heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
+    maxHeight = max(int(heightA), int(heightB))
+    dst = np.array([
+        [0, 0],
+        [maxWidth - 1, 0],
+        [maxWidth - 1, maxHeight - 1],
+        [0, maxHeight - 1]], dtype="float32")
+    M = cv.getPerspectiveTransform(rect, dst)
+    warped = cv.warpPerspective(image, M, (maxWidth, maxHeight))
+    return warped
 
 def main():
     images = []
@@ -84,17 +137,24 @@ def main():
             images.append(os.path.join(save_path,Path(nazwa + '0' + str(i) +'.' + end)))
         else:
             images.append(os.path.join(save_path,Path(nazwa + str(i) + '.'+ end)))
-    for i in range(len(images)-2):
+    for i in range(len(images)-5):
         images.pop()
 
     for img in images:
         images_zmienione.append(img[:-4] + '_zmienione' + '.jpg')
 
+    contures = []
     for i in range(len(images)):
-        image = cv.imread(images[i])
-        image = processImage(image,image)
+        oldImage = cv.imread(images[i])
+        image = processImage(oldImage,oldImage)
         print(images_zmienione)
-        cv.imwrite(images_zmienione[i],image)
+        cv.imwrite(images_zmienione[i], image)
+        tmp = find4Coordinate(image)
+        contures.append(tmp)
+
+        cv.imshow("conture", four_point_transform(image,tmp))
+        cv.waitKey()
+        cv.destroyAllWindows()
 
 
 
@@ -105,4 +165,6 @@ def main():
 
     imgs_comb = PIL.Image.fromarray(imgs_comb)
     imgs_comb.save('all_cards.jpg')
-main()
+
+if __name__== "__main__":
+  main()
