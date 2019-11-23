@@ -96,5 +96,5 @@ def main():
     imgs_comb = np.hstack((np.asarray(i.resize(min_shape)) for i in imgs))
 
     imgs_comb = PIL.Image.fromarray(imgs_comb)
-    imgs_comb.save('all_planes.jpg')
+    imgs_comb.save('all_cards.jpg')
 main()
