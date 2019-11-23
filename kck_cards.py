@@ -52,21 +52,30 @@ def morphImage(image):
     image = cv.morphologyEx(image, cv.MORPH_OPEN, kernel)
     return image
 
-def processImage(image):
-    image = resizeImage(image, (1200,  1200), True)
-    gray = alterColors(image)
+def processImage(image,mask):
+    mask = resizeImage(mask, (1200,  1200), True)
+    image = resizeImage(image, (1200, 1200), True)
+    gray = alterColors(mask)
     thresh = thresholding(gray)
     thresh_plus = morphImage(thresh)
     contours = getContours(thresh_plus)
-    image = drawContours(image, contours)
+
+    mask = drawContours(mask, contours)
+
+    _,mask = cv.threshold(mask, 0, 255,cv.THRESH_BINARY)
+
     kernel = np.ones((3, 3), np.uint8)
-    image = cv.erode(image,kernel,iterations=6)
+    mask = cv.erode(mask,kernel,iterations=4)
+
+    image = cv.bitwise_or(image, mask)
     image = resizeImage(image, (800,  600), True)
+    cv.imshow('nazwa', image)
+    cv.waitKey(0)
     return image
 
 def main():
     images = []
-
+    images_zmienione = []
     save_path = Path('data/')
     nazwa = 'card'
     end = 'jpg'
@@ -78,13 +87,12 @@ def main():
     for i in range(len(images)-2):
         images.pop()
 
-    images_zmienione = []
     for img in images:
         images_zmienione.append(img[:-4] + '_zmienione' + '.jpg')
 
     for i in range(len(images)):
         image = cv.imread(images[i])
-        image = processImage(image)
+        image = processImage(image,image)
         print(images_zmienione)
         cv.imwrite(images_zmienione[i],image)
 
