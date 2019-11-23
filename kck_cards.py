@@ -57,8 +57,8 @@ def processImage(image):
     thresh_plus = morphImage(thresh)
     contours = getContours(thresh_plus)
     image = drawContours(image, contours)
-    #kernel = np.ones((3, 3), np.uint8)
-    #image = cv.erode(image,kernel,iterations=6)
+    kernel = np.ones((3, 3), np.uint8)
+    image = cv.erode(image,kernel,iterations=6)
     image = resizeImage(image, (800,  600), True)
     return image
 
@@ -73,8 +73,6 @@ def main():
             images.append(nazwa + str(i) + '.'+ end)
     #images.remove('card02.jpg')
     images.remove('card03.jpg')
-    images.remove('card04.jpg')
-    images.remove('card05.jpg')
     images.remove('card06.jpg')
     images.remove('card07.jpg')
     images.remove('card08.jpg')
