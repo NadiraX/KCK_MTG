@@ -2,6 +2,8 @@ import numpy as np
 import cv2 as cv
 import random as rng
 import matplotlib.pyplot as plt
+from pathlib import Path
+import os.path
 from PIL import Image
 import PIL
 
@@ -64,38 +66,27 @@ def processImage(image):
 
 def main():
     images = []
+
+    save_path = Path('data/')
     nazwa = 'card'
     end = 'jpg'
     for i in range(21):
         if i < 10:
-            images.append(nazwa + '0' + str(i) +'.' + end)
+            images.append(os.path.join(save_path,Path(nazwa + '0' + str(i) +'.' + end)))
         else:
-            images.append(nazwa + str(i) + '.'+ end)
-    #images.remove('card02.jpg')
-    images.remove('card03.jpg')
-    images.remove('card06.jpg')
-    images.remove('card07.jpg')
-    images.remove('card08.jpg')
-    images.remove('card09.jpg')
-    images.remove('card10.jpg')
-    images.remove('card11.jpg')
-    images.remove('card12.jpg')
-    images.remove('card13.jpg')
-    images.remove('card14.jpg')
-    images.remove('card15.jpg')
-    images.remove('card16.jpg')
-    images.remove('card17.jpg')
-    images.remove('card18.jpg')
-    images.remove('card19.jpg')
-    images.remove('card20.jpg')
+            images.append(os.path.join(save_path,Path(nazwa + str(i) + '.'+ end)))
+    for i in range(len(images)-2):
+        images.pop()
+    print(images)
 
     images_zmienione = []
     for img in images:
-        images_zmienione.append(img[:-4] + '_zmienione' + '.jpg')
+        images_zmienione.append(Path(img[:-4] + '_zmienione' + '.jpg'))
 
     for i in range(len(images)):
         image = cv.imread(images[i])
-        cv.imwrite(images_zmienione[i],processImage(image))
+
+        cv.imwrite(os.path.join(save_path,images_zmienione[i]),processImage(image))
 
 
 

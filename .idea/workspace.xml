@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4067142c-2997-4ffd-8cc6-86cc3216e4b3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all_planes.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/all_planes.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/card00_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/card00_zmienione.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/card01_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/card01_zmienione.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/card02_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/card02_zmienione.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/card00.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card00_zmienione.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card01_zmienione.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card02_zmienione.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card04.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card04_zmienione.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card05.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/card05_zmienione.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/kck_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/kck_cards.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,18 +26,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kck_cards.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+            <state relative-caret-position="272">
+              <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/all_planes.jpg">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -270,8 +270,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kck_cards.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+        <state relative-caret-position="272">
+          <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
