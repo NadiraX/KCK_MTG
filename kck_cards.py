@@ -77,16 +77,16 @@ def main():
             images.append(os.path.join(save_path,Path(nazwa + str(i) + '.'+ end)))
     for i in range(len(images)-2):
         images.pop()
-    print(images)
 
     images_zmienione = []
     for img in images:
-        images_zmienione.append(Path(img[:-4] + '_zmienione' + '.jpg'))
+        images_zmienione.append(img[:-4] + '_zmienione' + '.jpg')
 
     for i in range(len(images)):
         image = cv.imread(images[i])
-
-        cv.imwrite(os.path.join(save_path,images_zmienione[i]),processImage(image))
+        image = processImage(image)
+        print(images_zmienione)
+        cv.imwrite(images_zmienione[i],image)
 
 
 
