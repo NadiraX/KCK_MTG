@@ -3,16 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="4067142c-2997-4ffd-8cc6-86cc3216e4b3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all_cards.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/all_cards.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card00.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card00.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card00_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card00_zmienione.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card01.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card01_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card01_zmienione.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card02.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card02_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card02_zmienione.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card03_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card03_zmienione.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card04_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card04_zmienione.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/card05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card05.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kck_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/kck_cards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card05_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card05_zmienione.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card06.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card06.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card06_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card06_zmienione.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card08.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card08_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card08_zmienione.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card09.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card09.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/card09_zmienione.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/data/card09_zmienione.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,18 +66,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/kck_cards.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="176" column="8" lean-forward="true" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="8" />
+            <state relative-caret-position="510">
+              <caret line="154" column="21" selection-start-line="154" selection-start-column="21" selection-end-line="154" selection-end-column="21" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/card02_zmienione.jpg">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -381,8 +384,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/kck_cards.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="176" column="8" lean-forward="true" selection-start-line="176" selection-start-column="8" selection-end-line="176" selection-end-column="8" />
+        <state relative-caret-position="510">
+          <caret line="154" column="21" selection-start-line="154" selection-start-column="21" selection-end-line="154" selection-end-column="21" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
