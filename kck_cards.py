@@ -87,6 +87,8 @@ def find4Coordinate(conture):
         if len(approx) == 4:
             screenCnt = approx
             break
+        else:
+            screenCnt = []
     end=[]
     for i in screenCnt:
         end.append(i[0])
@@ -137,7 +139,7 @@ def main():
             images.append(os.path.join(save_path,Path(nazwa + '0' + str(i) +'.' + end)))
         else:
             images.append(os.path.join(save_path,Path(nazwa + str(i) + '.'+ end)))
-    for i in range(len(images)-5):
+    for i in range(len(images)-17):
         images.pop()
 
     for img in images:
@@ -149,12 +151,17 @@ def main():
         image = processImage(oldImage,oldImage)
         print(images_zmienione)
         cv.imwrite(images_zmienione[i], image)
+        cv.imshow('nazwa',image)
+        cv.waitKey(0)
         tmp = find4Coordinate(image)
-        contures.append(tmp)
+        if tmp != []:
+            contures.append(tmp)
 
-        cv.imshow("conture", four_point_transform(image,tmp))
-        cv.waitKey()
-        cv.destroyAllWindows()
+            cv.imshow("conture", four_point_transform(image,tmp))
+            cv.waitKey()
+            cv.destroyAllWindows()
+        else:
+            pass
 
 
 
