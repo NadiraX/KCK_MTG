@@ -2,8 +2,41 @@ import os.path
 import cv2 as cv
 from pathlib import Path
 from PIL import Image
+from PIL import ImageFilter
 import colorsys
 
+def gora_dol(imgs,pure_list):
+    for i in range(len(imgs)):
+        hsv_im = imgs[i].convert('HSV')
+        width, height = imgs[i].size
+
+        h2 = height / 3
+        print(h2)
+        gora = []
+        dol = []
+
+        suma1 = 0
+        suma2 = 0
+        iter1 = 0
+        iter2 = 0
+        for w in range(width):
+            for h in range(height):
+                r, g, b = hsv_im.getpixel((w, h))
+                v, s, h3 = colorsys.rgb_to_hsv(r, g, b)
+
+                if h > h2*2:
+                    suma1 += v
+                    iter1 += 1
+                elif h<h2:
+                    suma2 += v
+                    iter2 += 1
+        print(pure_list[i])
+        if suma1/iter1 >suma2/iter2:
+            #print("1")
+            pass
+        else:
+            pass
+            #print("0")
 
 def main():
     pure_list = []
@@ -12,23 +45,10 @@ def main():
         pure_list.append(filename)
 
     imgs = [Image.open(os.path.join(save_path_pure, Path(i))) for i in pure_list]
-    hsv_im = imgs[0].convert('HSV')
-    width, height = imgs[0].size
+#   for i in range(len(imgs)):
+#        imgs[i]=imgs[i].filter(ImageFilter.SHARPEN)
 
-    h2 = height/2
-    gora =[]
-    dol = []
-    for w in range(width):
-        for h in range(height):
-            r,g,b = hsv_im.getpixel((w,h))
-            h,s,v = colorsys.rgb_to_hsv(r,g,b)
-            if h >h2:
-                if v not in gora:
-                    gora.append(v)
-            else:
-                if v not in dol:
-                    dol.append(v)
-    print(len(gora))
-    print(len(dol))
-    print(dol)
+
+    gora_dol(imgs,pure_list)
+
 main()
