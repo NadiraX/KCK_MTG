@@ -9,13 +9,13 @@ def gora_dol(imgs,pure_list):
     for i in range(len(imgs)):
 
         hsv_im = imgs[i].convert('HSV')
+        #imgs[i].show()
         width, height = imgs[i].size
 
 
 
-        h2 = height / 8
-        gora = []
-        dol = []
+        h2 = height / 2
+
 
         suma1 = 0
         suma2 = 0
@@ -26,18 +26,20 @@ def gora_dol(imgs,pure_list):
                 r, g, b = hsv_im.getpixel((w, h))
                 v, s, h3 = colorsys.rgb_to_hsv(r, g, b)
 
-                if h > h2*5 and h<h2*7:
-                    suma1 += h3
+                if h > h2:
+                    suma1 += v
                     iter1 += 1
-                elif h<h2*3 and h>h2:
-                    suma2 += h3
+                elif h<h2:
+                    suma2 += v
                     iter2 += 1
         print(pure_list[i])
-        if suma1/iter1 >suma2/iter2:
+        if (suma1/iter1) >(suma2/iter2):
             print("1")
         else:
             print("0")
+            imgs[i] = imgs[i].rotate(180, expand=True)
         #imgs[i].show()
+    return(imgs)
 def main():
     pure_list = []
     save_path_pure = Path('pure/')
@@ -51,6 +53,7 @@ def main():
             imgs[i] = imgs[i].rotate(90,expand=True)
         imgs[i] = imgs[i].convert('L')
         imgs[i] = imgs[i].point(lambda x: 0 if x < 128 else 255, '1')
-    gora_dol(imgs,pure_list)
-
+    imgs=gora_dol(imgs,pure_list)
+    for i in range(len(imgs)):
+        imgs[i].save(pure_list[i])
 main()
