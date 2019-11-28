@@ -39,9 +39,10 @@ def gora_dol(imgs):
     return(rotator)
 
 
-def main():
+def main(path = Path('pure/') ):
     pure_list = []
-    save_path_pure = Path('pure/')
+    save_path_pure = path
+    save_path_resized = Path('pure_rotated_resized/')
     for filename in os.listdir(save_path_pure):
         pure_list.append(filename)
 
@@ -51,7 +52,9 @@ def main():
 
     for i in range(len(imgs)):
         imgs[i] = imgs[i].rotate(rotator[i], expand=True)
-        imgs[i].save(os.path.join(save_path_pure,pure_list[i]))
+        #imgs[i] = imgs[i].resize((300,int((height*300)/width)))
+        imgs[i] = imgs[i].resize((300, 450))
+        imgs[i].save(os.path.join(save_path_resized,pure_list[i]))
 
 
 if __name__ == '__main__':
