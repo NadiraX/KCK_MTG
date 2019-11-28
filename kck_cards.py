@@ -1,12 +1,9 @@
 import numpy as np
 import cv2 as cv
-import random as rng
-import matplotlib.pyplot as plt
 from pathlib import Path
 import os.path
-from PIL import Image
-import PIL
-import imutils
+
+
 
 def resizeImage(image, size, proportional):
     if proportional:
@@ -76,7 +73,14 @@ def processImage(image,mask):
 def find4Coordinate(conture):
     gray = alterColors(conture)
     edged = cv.Canny(gray, 75, 200)
+
+    kernel = cv.getStructuringElement(cv.MORPH_ELLIPSE,(9,9))
+    edged = cv.dilate(edged,kernel)
+
+
     cnts = cv.findContours(edged.copy(), cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
+
+
     #cnts = cnts[0] if imutils.is_cv2() else cnts[1]
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     cnts = sorted(cnts, key=cv.contourArea, reverse=True)[:5]
@@ -85,17 +89,17 @@ def find4Coordinate(conture):
         peri = cv.arcLength(c, True)
         approx = cv.approxPolyDP(c, 0.02 * peri, True)
         if len(approx) == 4:
-            screenCnt = approx
+            #screenCnt = approx
+            screenCnt = c
             break
         else:
             screenCnt = []
+
+
+
     end=[]
     for i in screenCnt:
         end.append(i[0])
-    #cv.drawContours(conture, [screenCnt], -1, (0, 255, 0), 2)
-    #cv.imshow("conture", conture)
-    #cv.waitKey()
-    #cv.destroyAllWindows()
 
     return end
 
@@ -131,47 +135,43 @@ def four_point_transform(image, pts):
 def main():
     images = []
     images_zmienione = []
+    images_pure = []
     save_path = Path('data/')
+    save_path_zmienione = Path('zmienione/')
+    save_path_pure = Path('pure/')
     nazwa = 'card'
     end = 'jpg'
-    for i in range(21):
-        if i < 10:
-            images.append(os.path.join(save_path,Path(nazwa + '0' + str(i) +'.' + end)))
-        else:
-            images.append(os.path.join(save_path,Path(nazwa + str(i) + '.'+ end)))
-    for i in range(len(images)-17):
-        images.pop()
 
-    for img in images:
-        images_zmienione.append(img[:-4] + '_zmienione' + '.jpg')
+    for filename in os.listdir(save_path):
+        images.append(os.path.join(save_path,Path(filename)))
+        images_zmienione.append(os.path.join(save_path_zmienione, Path(filename)))
+        images_pure.append(os.path.join(save_path_pure, Path(filename)))
 
     contures = []
     for i in range(len(images)):
         oldImage = cv.imread(images[i])
         image = processImage(oldImage,oldImage)
-        print(images_zmienione)
         cv.imwrite(images_zmienione[i], image)
-        cv.imshow('nazwa',image)
-        cv.waitKey(0)
+
         tmp = find4Coordinate(image)
         if tmp != []:
             contures.append(tmp)
-
-            cv.imshow("conture", four_point_transform(image,tmp))
-            cv.waitKey()
-            cv.destroyAllWindows()
+            transfo = four_point_transform(image, tmp)
+            #to nie bedzie działało jak trzeba inaczej trzeba resizowac
+            #transfo = resizeImage(transfo, (450, 300), True)
+            cv.imwrite(images_pure[i],transfo)
         else:
             pass
 
 
 
-    imgs = [PIL.Image.open(i) for i in images_zmienione]
-
-    min_shape = sorted([(np.sum(i.size), i.size) for i in imgs])[0][1]
-    imgs_comb = np.hstack((np.asarray(i.resize(min_shape)) for i in imgs))
-
-    imgs_comb = PIL.Image.fromarray(imgs_comb)
-    imgs_comb.save('all_cards.jpg')
+    # imgs = [PIL.Image.open(i) for i in images_zmienione]
+    #
+    # min_shape = sorted([(np.sum(i.size), i.size) for i in imgs])[0][1]
+    # imgs_comb = np.hstack((np.asarray(i.resize(min_shape)) for i in imgs))
+    #
+    # imgs_comb = PIL.Image.fromarray(imgs_comb)
+    # imgs_comb.save('all_cards.jpg')
 
 if __name__== "__main__":
   main()

@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image
 import colorsys
 
-def gora_dol(imgs,pure_list):
+def gora_dol(imgs):
     rotator=[0 for i in imgs]
     for i in range(len(imgs)):
         imgs[i] = imgs[i].convert('L')
@@ -47,9 +47,12 @@ def main():
 
     imgs = [Image.open(os.path.join(save_path_pure, Path(i))) for i in pure_list]
 
-    rotator=gora_dol(imgs.copy(),pure_list)
+    rotator=gora_dol(imgs.copy())
 
     for i in range(len(imgs)):
         imgs[i] = imgs[i].rotate(rotator[i], expand=True)
         imgs[i].save(os.path.join(save_path_pure,pure_list[i]))
-main()
+
+
+if __name__ == '__main__':
+    main()
