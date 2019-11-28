@@ -3,7 +3,7 @@ import pure_reader
 from pathlib import Path
 
 def main():
-    path = Path('pure_rotated_resized/')
+    path = Path('pure_rotated_resize/')
     kck_cards.main()
     pure_reader.main()
     pure_reader.main(path)
