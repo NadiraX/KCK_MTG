@@ -132,6 +132,10 @@ def four_point_transform(image, pts):
     warped = cv.warpPerspective(image, M, (maxWidth, maxHeight))
     return warped
 
+def usuwanie(path):
+    for filename in os.listdir(path):
+        os.unlink(os.path.join(path, filename))
+
 def main():
     images = []
     images_zmienione = []
@@ -139,8 +143,12 @@ def main():
     save_path = Path('data/')
     save_path_zmienione = Path('zmienione/')
     save_path_pure = Path('pure/')
-    nazwa = 'card'
-    end = 'jpg'
+    save_path_resized = Path('pure_rotated_resize/')
+
+    usuwanie(save_path_zmienione)
+    usuwanie(save_path_pure)
+    usuwanie(save_path_resized)
+
 
     for filename in os.listdir(save_path):
         images.append(os.path.join(save_path,Path(filename)))
@@ -148,6 +156,7 @@ def main():
         images_pure.append(os.path.join(save_path_pure, Path(filename)))
 
     contures = []
+
     for i in range(len(images)):
         oldImage = cv.imread(images[i])
         image = processImage(oldImage,oldImage)

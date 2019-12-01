@@ -54,7 +54,7 @@ def main(path = Path('pure/') ):
     for i in range(len(imgs)):
         imgs[i] = imgs[i].rotate(rotator[i], expand=True)
         #imgs[i] = imgs[i].resize((300,int((height*300)/width)))
-        imgs[i] = imgs[i].resize((30, 45))
+        imgs[i] = imgs[i].resize((32, 32))
         imgs[i].save(os.path.join(save_path_resized,pure_list[i]))
 
 
