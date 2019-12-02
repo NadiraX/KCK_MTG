@@ -28,8 +28,8 @@ for filename in os.listdir(path):
     img = Image.open(os.path.join(path,Path(filename))).convert("RGB")
     img.load()
     data = np.asarray(img, dtype="int32")
-    train_images.append(data)
-    train_labels.append(filename[0])
+    test_images.append(data)
+    test_labels.append(filename[0])
 
 for filename in os.listdir(path_train):
     img = Image.open(os.path.join(path_train,Path(filename))).convert("RGB")
@@ -40,7 +40,8 @@ for filename in os.listdir(path_train):
 
 #for filename in os.listdir(path_train):
 
-
+print(len(train_labels))
+print(len(test_labels))
 train_images = np.array(train_images, dtype="int32")
 test_images = np.array(test_images, dtype="int32")
 
@@ -89,7 +90,7 @@ train_labels=np.array(train_labels)
 test_labels=np.array(test_labels)
 
 train_images,train_labels = shuffle_in_unison_scary(train_images,train_labels)
-#train_images,train_labels = shuffle_in_unison_scary(train_images,train_labels)
+test_images,test_labels = shuffle_in_unison_scary(train_images,train_labels)
 #print(train_labels)
 # train_images = np.expand_dims(train_images, -1)
 # test_images = np.expand_dims(test_images, -1)
@@ -114,7 +115,8 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(train_images, train_labels, epochs=10,validation_split=0.30)
+history = model.fit(train_images, train_labels, epochs=20,
+                    validation_data=(test_images, test_labels))
 
 plt.plot(history.history['accuracy'], label='accuracy')
 plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
