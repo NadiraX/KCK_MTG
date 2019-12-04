@@ -8,6 +8,7 @@ from pathlib import Path
 from PIL import Image
 from tensorflow.keras import layers, models
 import matplotlib.pyplot as plt
+from scipy.misc import toimage
 
 def shuffle_in_unison_scary(a, b):
     rng_state = np.random.get_state()
@@ -20,16 +21,11 @@ train_labels = []
 train_images = []
 test_images = []
 test_labels = []
-path = Path('pure_rotated_resize/')
-path_train = Path('train_resize/')
+# path = Path('pure_rotated_resize/')
+path_train = Path('data_resize/')
 
 x = []
-for filename in os.listdir(path):
-    img = Image.open(os.path.join(path,Path(filename))).convert("RGB")
-    img.load()
-    data = np.asarray(img, dtype="int32")
-    test_images.append(data)
-    test_labels.append(filename[0])
+
 
 for filename in os.listdir(path_train):
     img = Image.open(os.path.join(path_train,Path(filename))).convert("RGB")
@@ -37,6 +33,20 @@ for filename in os.listdir(path_train):
     data = np.asarray(img, dtype="int32")
     train_images.append(data)
     train_labels.append(filename[0])
+zipped = list(zip(train_images,train_labels))
+t2 = [zipped.pop(random.randrange(len(zipped))) for x in range(20)]
+train_images,train_labels = list(zip(*zipped))
+train_images = list(train_images)
+train_labels = list(train_labels)
+test_images,test_labels = list(zip(*t2))
+test_images = list(test_images)
+test_labels = list(test_labels)
+# for filename in os.listdir(path):
+#     img = Image.open(os.path.join(path,Path(filename))).convert("RGB")
+#     img.load()
+#     data = np.asarray(img, dtype="int32")
+#     test_images.append(data)
+#     test_labels.append(filename[0])
 
 #for filename in os.listdir(path_train):
 
@@ -46,10 +56,12 @@ train_images = np.array(train_images, dtype="int32")
 test_images = np.array(test_images, dtype="int32")
 
 
-for i in range(len(train_images)):
-    train_images[i] = train_images[i] / 255.0
-for i in range(len(test_images)):
-    test_images[i] = test_images[i] / 255.0
+
+
+# for i in range(len(train_images)):
+#     train_images[i] = train_images[i] / 255.0
+# for i in range(len(test_images)):
+#     test_images[i] = test_images[i] / 255.0
 
 for i in range(len(train_labels)):
     if train_labels[i]=='b':
@@ -86,28 +98,25 @@ for i in range(len(test_labels)):
 # random.shuffle(c)
 # train_labels,train_images = zip(*c)
 
+
+
 train_labels=np.array(train_labels)
 test_labels=np.array(test_labels)
 
-train_images,train_labels = shuffle_in_unison_scary(train_images,train_labels)
-test_images,test_labels = shuffle_in_unison_scary(train_images,train_labels)
-#print(train_labels)
-# train_images = np.expand_dims(train_images, -1)
-# test_images = np.expand_dims(test_images, -1)
 
-#train_images = train_images.reshape(train_images.shape[0], 32, 32, 3)
-# for i in range(len(train_images)):
-#     train_images[i]=train_images[i].reshape(95,32, 32,3)
+
+train_images,train_labels = shuffle_in_unison_scary(train_images,train_labels)
+test_images,test_labels = shuffle_in_unison_scary(test_images,test_labels)
 
 
 model = models.Sequential()
-model.add(layers.Conv2D(32, (3,3), activation='relu', input_shape=(32,32,3) ))
+model.add(layers.Conv2D(32, (3,3), activation='relu', input_shape=(100,100,3) ))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.Flatten())
-model.add(layers.Dense(125, activation='relu'))
+model.add(layers.Dense(2500, activation='relu'))
 model.add(layers.Dense(7, activation='softmax'))
 #
 model.summary()
@@ -115,16 +124,17 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(train_images, train_labels, epochs=20,
-                    validation_data=(test_images, test_labels))
+history = model.fit(train_images, train_labels, epochs=10,validation_split=0.2)
 
 plt.plot(history.history['accuracy'], label='accuracy')
 plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
-plt.ylim([0.5, 1])
+plt.ylim([0, 1])
 plt.legend(loc='lower right')
 plt.show()
-# test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
-#
-# print(test_acc)
+test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+print(test_acc)
+
+# for i in range(len(test_images)):
+#     toimage(test_images[i]).show()
