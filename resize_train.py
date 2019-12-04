@@ -12,7 +12,7 @@ def main(path = Path('train_resize/') ):
     imgs = [Image.open(os.path.join(save_train, Path(i))).convert('RGB') for i in pure_list]
 
     for i in range(len(imgs)):
-        imgs[i] = imgs[i].resize((32, 32))
+        imgs[i] = imgs[i].resize((100, 100))
         imgs[i].save(os.path.join(save_train,pure_list[i]))
 
 
