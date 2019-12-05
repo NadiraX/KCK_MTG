@@ -9,7 +9,7 @@ from PIL import Image
 from tensorflow.keras import layers, models
 import matplotlib.pyplot as plt
 from functools import reduce
-
+from PIL import ImageFont
 
 def shuffle_in_unison_scary(a, b):
     rng_state = np.random.get_state()
@@ -125,7 +125,7 @@ model = models.Sequential()
 # model.add(layers.Conv2D(32, (3, 3), activation='relu'))
 # model.add(layers.MaxPooling2D((2, 2)))
 # model.add(layers.Conv2D(32, (3, 3), activation='relu'))
-model.add(layers.Flatten(input_shape=(100,100,3)))
+model.add(layers.Flatten(input_shape = (100,100,3)))
 # model.add(layers.Dense(256, activation='relu'))
 model.add(layers.Dense(2500, activation='relu'))
 model.add(layers.Dense(7, activation='softmax'))
