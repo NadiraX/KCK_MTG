@@ -167,5 +167,5 @@ print(all_true)
 for i in range(len(test_images)):
     im = Image.fromarray(test_images[i].astype('uint8'))
     im = im.resize((100,100),Image.ANTIALIAS)
-    filename = Path(str(i)+'.jpg')
+    filename = Path(str(i)+str(all[i])+str(all_true[i])+'.jpg')
     im.save(os.path.join(path_predict,Path(filename)))
